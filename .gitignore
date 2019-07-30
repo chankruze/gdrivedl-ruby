@@ -1,1 +1,5 @@
 *.gem
+*.txt
+*demo*
+*.zip
+*tar.xz

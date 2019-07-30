@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
 	s.name = 'gdrivedl'
-	s.version = '1.0.0'
+	s.version = '1.0.2'
 	s.date = '2019-07-30'
 	s.description = 'An utility to download google drive files from command line'
 	s.summary = 'Download Google Drive Files From Terminal'

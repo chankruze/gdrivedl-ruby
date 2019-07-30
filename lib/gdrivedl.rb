@@ -1,6 +1,7 @@
 $GITHUB_URL = "https://github.com/chankruze/gdrivedl/"
 $ISSUES_URL = "https://github.com/chankruze/gdrivedl/issues"
 $WEBSITE_URL = "https://rubygems.org/gems/gdrivedl"
+$VERSION = `(gem list gdrivedl --remote | grep gdrivedl | cut -d'(' -f2 | cut -d')' -f1)`
 
 class Gdrivedl
   # colors
@@ -34,7 +35,7 @@ class Gdrivedl
     puts " ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝  ╚══════╝╚═════╝ ╚══════╝"
     puts "#{green}>_ Download Google Drive Files With Wget"
     puts "#{white}=============================================================#{yellow}\n"
-    puts "# Version: 0.0.0"
+    puts "# Version: #$VERSION"
     puts "# Developer: chankruze (Chandan Kumar Mandal)"
     puts "# Company: Geekofia"
     puts "# Website: #$WEBSITE_URL"
@@ -81,11 +82,11 @@ class Gdrivedl
       puts "#{blue}File ID: #{white}#{file_id}"
       puts "#{blue}File Name (to save as): #{white}#{file_name}"
       puts "#{white}\n================= Logs ================="
-      @cookies=`(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate "https://docs.google.com/uc?export=download&id=#{file_id}" -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')`
-      system `wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=#@cookies&id=#{file_id}" -O #{file_name}`
+      @cookies=`(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate "https://drive.google.com/uc?export=download&id=#{file_id}" -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')`
+      system `wget --load-cookies /tmp/cookies.txt "https://drive.google.com/uc?export=download&confirm=#@cookies&id=#{file_id}" -O #{file_name}`
       system `rm -rf /tmp/cookies.txt`
       puts "=================================="
-      puts "#{green}\nDownloaded file #{file_name} !"
+      puts "#{green}\nDownloaded file #{file_name} !#{white}"
     end
   end
 end
